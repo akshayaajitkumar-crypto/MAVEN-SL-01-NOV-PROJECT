@@ -35,6 +35,10 @@ public class MyCalc {
 	{
 		System.out.println("This is Hello!");
 	}
+	public void hello()
+	{
+		System.out.println("This is last step!");
+	}
 	
 	
 
