@@ -35,7 +35,7 @@ public class MyCalc {
 	{
 		System.out.println("This is Hello!");
 	}
-	public void hello()
+	public void hello2()
 	{
 		System.out.println("This is last step!");
 	}
