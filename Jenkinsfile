@@ -4,14 +4,6 @@ pipeline {
            maven 'MAVEN_HOME'
         }  
      stages {
-          stage ('checkout') {
-             steps {
-               dir('app') {
-                git branch: 'master',
-                url: 'https://github.com/akshayaajitkumar-crypto/MAVEN-SL-01-NOV-PROJECT.git'
-             }
-            }
-          }
           stage('Build') {
            steps {
               dir('app') {
