@@ -1,1 +1,45 @@
-
+@Library('main') _
+pipeline {
+     agent any
+        tools {
+           maven 'MAVEN_HOME'
+        }  
+     stages {
+          stage('Build') {
+           steps {
+             script {
+              buildApp()
+             }
+           }
+         }
+          stage ('Test') {
+            steps {
+               script {
+                 testApp()
+                  }
+               }
+          }
+          stage ('PAckage') {
+            steps {
+               script {
+                packageApp()
+                  }
+               }
+          }
+          stage('Deploy') {
+            steps {
+               script {
+                deployApp()
+               }
+            }
+          } 
+     }
+     post {
+        success {
+          echo 'Deployed successfuly'
+        }
+        failure {
+          echo 'Build Failed '
+        }
+     }
+}
