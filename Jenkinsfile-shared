@@ -1,0 +1,40 @@
+pipeline {
+     agent any
+        tools {
+           maven 'MAVEN_HOME'
+        }  
+     stages {
+          stage('Build') {
+           steps {
+              buildApp()
+           }
+         }
+          stage ('Test') {
+            steps {
+                 dir('app') {
+                    sh 'mvn test'
+                }
+                  }
+          }
+          stage ('PAckage') {
+            steps {
+                dir('app') {
+                 sh 'mvn package'
+                 }
+                  }
+          }
+          stage('Deploy') {
+            steps {
+                echo 'Deployment completed successfully.'
+            }
+          } 
+     }
+     post {
+        success {
+          echo 'Deployed successfuly'
+        }
+        failure {
+          echo 'Build Failed '
+        }
+     }
+}
