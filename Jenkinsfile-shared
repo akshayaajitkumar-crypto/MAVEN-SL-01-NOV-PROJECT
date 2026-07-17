@@ -11,21 +11,17 @@ pipeline {
          }
           stage ('Test') {
             steps {
-                 dir('app') {
-                    sh 'mvn test'
-                }
+                 testApp()
                   }
           }
           stage ('PAckage') {
             steps {
-                dir('app') {
-                 sh 'mvn package'
-                 }
+                packageApp()
                   }
           }
           stage('Deploy') {
             steps {
-                echo 'Deployment completed successfully.'
+                deployApp()
             }
           } 
      }
