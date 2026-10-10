@@ -1,42 +1,44 @@
+```groovy
 pipeline {
-     agent any
-        tools {
-           maven 'MAVEN_HOME'
-        }  
-     stages {
-          stage('Build') {
-           steps {
-              dir('app') {
-               sh 'mvn clean compile'
-             }
-           }
-         }
-          stage ('Test') {
+    agent any
+
+    tools {
+        maven 'MAVEN_HOME'
+    }
+
+    stages {
+        stage('Build') {
             steps {
-                 dir('app') {
-                    sh 'mvn test'
-                }
-                  }
-          }
-          stage ('PAckage') {
+                sh 'mvn clean compile'
+            }
+        }
+
+        stage('Test') {
             steps {
-                dir('app') {
-                 sh 'mvn package'
-                 }
-                  }
-          }
-          stage('Deploy') {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+
+        stage('Deploy') {
             steps {
                 echo 'Deployment completed successfully.'
             }
-          } 
-     }
-     post {
+        }
+    }
+
+    post {
         success {
-          echo 'Deployed successfuly'
+            echo 'Build completed successfully.'
         }
         failure {
-          echo 'Build Failed '
+            echo 'Build failed.'
         }
-     }
+    }
 }
+```
