@@ -26,13 +26,16 @@ pipeline {
                   }
                }
           }
-          stage('Deploy') {
-            steps {
-               script {
-                deployApp()
-               }
+          sstage('Deploy') {
+           when {
+            branch 'master'
             }
-          } 
+            steps {
+              script {
+            deployApp()
+        }
+    }
+}
      }
      post {
         success {
