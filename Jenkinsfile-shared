@@ -27,12 +27,15 @@ pipeline {
                }
           }
           stage('Deploy') {
-            steps {
-               script {
-                deployApp()
-               }
-            }
-          } 
+          when {
+            branch 'master'
+          }
+           steps {
+            script {
+             deployApp()
+        }
+    }
+}
      }
      post {
         success {
